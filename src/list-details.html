@@ -1,0 +1,30 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="list-details">
+
+  <template>
+
+    <template is="dom-repeat" items="{{response}}" initial-count=1 target-framerate=60>
+      <div>{{item.name}} <img src={{item.apple}}> <img src={{item.goog}}> </div>
+    </template>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'list-details',
+
+      properties: {
+        response: {
+          value: null,
+          notify: true
+        }
+      }
+
+    });
+
+  </script>
+
+</dom-module>

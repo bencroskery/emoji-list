@@ -1,0 +1,87 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="emoji-info">
+
+  <template if="{{response}}">
+
+    <style>
+      .info {
+        text-align: center;
+        font-size: calc(2em + 4vw);
+      }
+      .emoji {
+        width: 64px;
+      }
+    </style>
+
+    <div class="info">
+      <div style="font-size: 64px">{{getEmoji(response, index)}}</div>
+      <div>{{getName(response, index)}}</div>
+      
+      <template is="dom-repeat" items="{{getImages(response, index)}}">
+        <img class="emoji" src="{{item}}"/>
+      </template>
+    </div>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'emoji-info',
+
+      properties: {
+        index: {
+          value: null
+        },
+        response: {
+          value: []
+        }
+      },
+
+      _Prop: function(r, i, p) {
+        if (i !== -1)
+          return r[i][p]
+      },
+
+      getEmoji: function(response, index) {
+        let i = decodeURIComponent(index);
+        const el = response.findIndex(function(e) {
+          return e.brow.indexOf(i) !== -1;
+        });
+
+        return this._Prop(response, el, 'brow')
+      },
+
+      getName: function(response, index) {
+        let i = decodeURIComponent(index);
+        const el = response.findIndex(function(e) {
+          return e.brow.indexOf(i) !== -1;
+        });
+
+        return this._Prop(response, el, 'name')
+      },
+
+      getImages: function(response, index) {
+        let i = decodeURIComponent(index);
+        const el = response.findIndex(function(e) {
+          return e.brow.indexOf(i) !== -1;
+        });
+
+        const props = ['apple', 'goog', 'twtr', 'fbm'];
+        let out = [];
+        let a = this._Prop;
+        props.forEach(function(p) {
+          const o = a(response, el, p);
+          if (o)
+            out.push(o);
+        });
+        return out;
+      }
+
+    });
+
+  </script>
+
+</dom-module>
