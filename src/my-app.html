@@ -19,7 +19,7 @@
 
   <template>
     <iron-ajax auto
-               url="/src/list.json"
+               url="list.json"
                handle-as="json"
                last-response="{{response}}">
     </iron-ajax>
@@ -74,10 +74,12 @@
 
     </style>
 
-    <app-location route="{{route}}"></app-location>
+    <app-location
+        route="{{route}}">
+    </app-location>
     <app-route
         route="{{route}}"
-        pattern="/:page"
+        pattern="{{baseURL}/:page"
         data="{{routeData}}"
         tail="{{subroute}}">
     </app-route>
@@ -137,6 +139,15 @@
           reflectToAttribute: true,
           observer: '_pageChanged'
         },
+
+        baseURL: {
+          value: function() {
+            if (window.location.port === '')
+              return '/emoji-list'
+            else
+              return ''
+          }
+        }
 
       },
 
