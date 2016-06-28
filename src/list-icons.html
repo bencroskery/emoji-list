@@ -16,7 +16,7 @@
 
   </template>
 
-  <script>function goto(e){console.log(e.name)}Polymer({is:"list-icons",properties:{response:{value:null,notify:!0},search:{value:"",notify:!0}},_Matches:function(e){return function(o){return e.indexOf(o.brow)!==-1||o.name.toLowerCase().indexOf(e.toLowerCase())!==-1}}});</script>
+  <script>Polymer({is:"list-icons",properties:{response:{value:null,notify:!0},search:{value:"",notify:!0}},_Matches:function(e){return function(n){return e.indexOf(n.brow)!==-1||n.name.toLowerCase().indexOf(e.toLowerCase())!==-1}}});</script>
 
 </dom-module>
 </body></html>

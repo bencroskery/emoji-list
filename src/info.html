@@ -1,14 +1,16 @@
 <html><head><meta charset="UTF-8"><link rel="import" href="my-app.html"></head><body><dom-module id="emoji-info">
 
-  <template if="{{response}}">
+  <template>
 
     <style>.info{text-align:center;font-size:calc(2em + 4vw);}.emoji{width:64px;}</style>
 
+    <app-route route="{{route}}" pattern="/:id" data="{{sub}}"></app-route>
+
     <div class="info">
-      <div style="font-size: 64px">{{getEmoji(response, index)}}</div>
-      <div>{{getName(response, index)}}</div>
+      <div style="font-size: 64px">{{getEmoji(response, sub.id)}}</div>
+      <div>{{getName(response, sub.id)}}</div>
       
-      <template is="dom-repeat" items="{{getImages(response, index)}}">
+      <template is="dom-repeat" items="{{getImages(response, sub.id)}}">
         <img class="emoji" src="{{item}}">
       </template>
     </div>
@@ -22,11 +24,13 @@
       is: 'emoji-info',
 
       properties: {
-        index: {
-          value: null
-        },
         response: {
-          value: []
+          value: null,
+          notify: true
+        },
+        route: {
+          type: Object,
+          notify: true
         }
       },
 
@@ -68,6 +72,10 @@
             out.push(o);
         });
         return out;
+      },
+
+      log: function(a) {
+        console.log(a)
       }
 
     });

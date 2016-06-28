@@ -363,12 +363,10 @@ if(Array.isArray(e)){for(var t=[],n=0;n<e.length;n++)for(var r=e[n].toString().s
 
     <style>:host{display:block;--app-primary-color:#4285f4;--app-secondary-color:black;}app-header{background-color:var(--app-primary-color);color:#fff;}app-header paper-icon-button{--paper-icon-button-ink-color:white;}app-header paper-input{width:100%;--paper-input-container-color:white;--paper-input-container-focus-color:white;--paper-input-container-input-color:white;--paper-input-container-input:{font-size:24px;padding:0;};--paper-input-container-label:{font-size:24px;};}.drawer-list{margin:0 20px;}.drawer-list a{display:block;padding:0 16px;line-height:40px;text-decoration:none;color:var(--app-secondary-color);}.drawer-list a.iron-selected{color:black;font-weight:bold;}.drawer-list a.subroute{padding-left:32px;}</style>
 
-    <app-location route="{{route}}">
-    </app-location>
-    <app-route route="{{route}}" pattern="{{baseURL}/:page" data="{{routeData}}" tail="{{subroute}}">
+    <app-location route="{{route}}"></app-location>
+    <app-route route="{{route}}" pattern="{{baseURL}}/:page" data="{{routeData}}" tail="{{subRoute}}">
     </app-route>
-    <app-route route="{{subroute}}" pattern="/:id" data="{{subrouteData}}">
-    </app-route>
+    {{log(page)}}
     <app-scrollpos-control selected="[[page]]"></app-scrollpos-control>
 
     <app-drawer-layout fullbleed="">
@@ -398,7 +396,7 @@ if(Array.isArray(e)){for(var t=[],n=0;n<e.length;n++)for(var r=e[n].toString().s
           <list-icons name="icons" response="[[response]]" search="{{search}}"></list-icons>
           <list-details name="details" response="[[response]]"></list-details>
           <list-options name="options" response="[[response]]"></list-options>
-          <emoji-info name="info" response="[[response]]" index="{{subrouteData.id}}"></emoji-info>
+          <emoji-info name="info" response="[[response]]" route="[[subRoute]]"></emoji-info>
         </iron-pages>
 
       </app-header-layout>
@@ -407,7 +405,7 @@ if(Array.isArray(e)){for(var t=[],n=0;n<e.length;n++)for(var r=e[n].toString().s
 
   </template>
 
-  <script>function clearInput(e){e.parentNode.value=""}Polymer({is:"my-app",properties:{page:{type:String,reflectToAttribute:!0,observer:"_pageChanged"},baseURL:{value:function(){return""===window.location.port?"/emoji-list":""}}},observers:["_routePageChanged(routeData.page)"],_routePageChanged:function(e){this.page=e||"icons"},_pageChanged:function(e){"info"!=e?this.importHref(this.resolveUrl("list-"+e+".html"),null,null,!0):this.importHref(this.resolveUrl("info.html"),null,null,!0)},log:function(e){console.log(e)}});</script>
+  <script>function clearInput(e){e.parentNode.value=""}Polymer({is:"my-app",properties:{page:{type:String,reflectToAttribute:!0,observer:"_pageChanged"},baseURL:{value:function(){return""===window.location.port?"/emoji-list":""}}},observers:["_routePageChanged(routeData.page)"],_routePageChanged:function(e){this.page=e||"icons"},_pageChanged:function(e){"info"!=e?this.importHref(this.resolveUrl("list-"+e+".html"),this._lazyLoad,null,!0):this.importHref(this.resolveUrl("info.html"),this._lazyLoad,null,!0)},_lazyLoad:function(){this.loadComplete||Polymer.RenderStatus.afterNextRender(this,function(){"serviceWorker"in navigator&&navigator.serviceWorker.register(this.baseURL+"/service-worker.js"),this.loadComplete=!0})},log:function(e){console.log(e)}});</script>
 
 </dom-module>
 </body></html>

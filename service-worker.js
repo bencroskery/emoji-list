@@ -29,7 +29,7 @@
 
 
 /* eslint-disable quotes, comma-spacing */
-var PrecacheConfig = [["/emoji-list/bower_components/webcomponentsjs/webcomponents-lite.min.js","0fc977baabe843e858c7d6cde05986e7"],["/emoji-list/index.html","3a6023decbe704ed4cfa070e62f1d127"],["/emoji-list/manifest.json","7ea2d110149dc2c9c103f601c59ef09b"],["/emoji-list/src/info.html","2b5c8a92d2eea7da683fdbaee5249239"],["/emoji-list/src/list-details.html","e9ff08cbab93839df8f97495c989f89a"],["/emoji-list/src/list-icons.html","dfe46881cc9a6025a86d1d5ab2eea9fa"],["/emoji-list/src/list-options.html","2281fcd987ed460c2f30a8cb84314640"],["/emoji-list/src/list.json","cbf4a511161331f198d956f8ce6785c3"],["/emoji-list/src/my-app.html","2ae8e751f587586d346dd9c5d0e6052e"]];
+var PrecacheConfig = [["/emoji-list/bower_components/webcomponentsjs/webcomponents-lite.min.js","0fc977baabe843e858c7d6cde05986e7"],["/emoji-list/images/app-icon-144.png","6091833a43704e8f80a48a31e394e3ac"],["/emoji-list/images/app-icon-32.png","d6c1acdef48c57652d8d451ecdfdf7f1"],["/emoji-list/images/app-icon.svg","07a39c391d5fe67c263b3c127a28cfa5"],["/emoji-list/index.html","3d7848161c6420bbe72f784fe2e14dd6"],["/emoji-list/manifest.json","7ea2d110149dc2c9c103f601c59ef09b"],["/emoji-list/src/info.html","08632d0a80c4d2287db72d2949633a56"],["/emoji-list/src/list-details.html","e9ff08cbab93839df8f97495c989f89a"],["/emoji-list/src/list-icons.html","1e854312075d8b9612d9e96d9a5dba2d"],["/emoji-list/src/list-options.html","2281fcd987ed460c2f30a8cb84314640"],["/emoji-list/src/list.json","cbf4a511161331f198d956f8ce6785c3"],["/emoji-list/src/my-app.html","d438e23efd9cb30ff8937d2c445cfd29"]];
 /* eslint-enable quotes, comma-spacing */
 var CacheNamePrefix = 'sw-precache-v1--' + (self.registration ? self.registration.scope : '') + '-';
 
