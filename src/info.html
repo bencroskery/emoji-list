@@ -1,25 +1,15 @@
-<link rel="import" href="../bower_components/polymer/polymer.html">
-
-<dom-module id="emoji-info">
+<html><head><meta charset="UTF-8"><link rel="import" href="my-app.html"></head><body><dom-module id="emoji-info">
 
   <template if="{{response}}">
 
-    <style>
-      .info {
-        text-align: center;
-        font-size: calc(2em + 4vw);
-      }
-      .emoji {
-        width: 64px;
-      }
-    </style>
+    <style>.info{text-align:center;font-size:calc(2em + 4vw);}.emoji{width:64px;}</style>
 
     <div class="info">
       <div style="font-size: 64px">{{getEmoji(response, index)}}</div>
       <div>{{getName(response, index)}}</div>
       
       <template is="dom-repeat" items="{{getImages(response, index)}}">
-        <img class="emoji" src="{{item}}"/>
+        <img class="emoji" src="{{item}}">
       </template>
     </div>
 
@@ -85,3 +75,4 @@
   </script>
 
 </dom-module>
+</body></html>

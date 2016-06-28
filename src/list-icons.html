@@ -1,67 +1,22 @@
-<link rel="import" href="../bower_components/polymer/polymer.html">
-
-<dom-module id="list-icons">
+<html><head><meta charset="UTF-8"><link rel="import" href="my-app.html"></head><body><dom-module id="list-icons">
 
   <template>
 
-    <style>
-      .flexer {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        font-size: 2em;
-      }
-      .flex {
-        flex: 1 0 3em;
-        text-align: center;
-        padding: 1em 0;
-        color: initial;
-        text-decoration: initial;
-      }
-    </style>
+    <style>.flexer{display:flex;flex-wrap:wrap;justify-content:space-around;font-size:2em;}.flex{flex:1 0 3em;text-align:center;padding:1em 0;color:initial;text-decoration:initial;}</style>
 
     <div hidden="{{response}}">
       Loading...
     </div>
 
     <div class="flexer">
-      <template is="dom-repeat" delay=3000 items="{{response}}" filter="{{_Matches(search)}}" initial-count=1 target-framerate=120>
-        <a href="info/{{item.brow}}" class="flex">{{item.brow}}</div>
-      </template>
+      <template is="dom-repeat" delay="3000" items="{{response}}" filter="{{_Matches(search)}}" initial-count="1" target-framerate="120">
+        <a href="info/{{item.brow}}" class="flex">{{item.brow}}
+      </a></template>
     </div>
 
   </template>
 
-  <script>
-
-    Polymer({
-
-      is: 'list-icons',
-
-      properties: {
-        response: {
-          value: null,
-          notify: true
-        },
-        search: {
-          value: '',
-          notify: true
-        }
-      },
-
-      _Matches: function(search) {
-        return function(item) {
-          return search.indexOf(item.brow) !== -1 || item.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
-        };
-      }
-
-    });
-
-    function goto(el) {
-      console.log(el.name)
-      //location.href(el.name)
-    }
-
-  </script>
+  <script>function goto(e){console.log(e.name)}Polymer({is:"list-icons",properties:{response:{value:null,notify:!0},search:{value:"",notify:!0}},_Matches:function(e){return function(o){return e.indexOf(o.brow)!==-1||o.name.toLowerCase().indexOf(e.toLowerCase())!==-1}}});</script>
 
 </dom-module>
+</body></html>
