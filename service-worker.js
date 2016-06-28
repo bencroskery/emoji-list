@@ -29,7 +29,7 @@
 
 
 /* eslint-disable quotes, comma-spacing */
-var PrecacheConfig = [["/bower_components/webcomponentsjs/webcomponents-lite.min.js","0fc977baabe843e858c7d6cde05986e7"],["/index.html","4c38c87a62a95be161fcaf9c1d5c00ca"],["/manifest.json","b4aec6f31f9b7310408e32d4c1c9aed5"],["/src/info.html","2b5c8a92d2eea7da683fdbaee5249239"],["/src/list-details.html","e9ff08cbab93839df8f97495c989f89a"],["/src/list-icons.html","dfe46881cc9a6025a86d1d5ab2eea9fa"],["/src/list-options.html","2281fcd987ed460c2f30a8cb84314640"],["/src/list.json","cbf4a511161331f198d956f8ce6785c3"],["/src/my-app.html","dad618435a23a5e48b5c3b7147071b5e"]];
+var PrecacheConfig = [["/emoji-list/bower_components/webcomponentsjs/webcomponents-lite.min.js","0fc977baabe843e858c7d6cde05986e7"],["/emoji-list/index.html","3a6023decbe704ed4cfa070e62f1d127"],["/emoji-list/manifest.json","7ea2d110149dc2c9c103f601c59ef09b"],["/emoji-list/src/info.html","2b5c8a92d2eea7da683fdbaee5249239"],["/emoji-list/src/list-details.html","e9ff08cbab93839df8f97495c989f89a"],["/emoji-list/src/list-icons.html","dfe46881cc9a6025a86d1d5ab2eea9fa"],["/emoji-list/src/list-options.html","2281fcd987ed460c2f30a8cb84314640"],["/emoji-list/src/list.json","cbf4a511161331f198d956f8ce6785c3"],["/emoji-list/src/my-app.html","2ae8e751f587586d346dd9c5d0e6052e"]];
 /* eslint-enable quotes, comma-spacing */
 var CacheNamePrefix = 'sw-precache-v1--' + (self.registration ? self.registration.scope : '') + '-';
 
