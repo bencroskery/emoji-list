@@ -74,20 +74,14 @@
 
     </style>
 
-    <app-location
-        route="{{route}}">
-    </app-location>
+    <app-location route="{{route}}"></app-location>
     <app-route
         route="{{route}}"
-        pattern="{{baseURL}/:page"
+        pattern="{{baseURL}}/:page"
         data="{{routeData}}"
-        tail="{{subroute}}">
+        tail="{{subRoute}}">
     </app-route>
-    <app-route
-        route="{{subroute}}"
-        pattern="/:id"
-        data="{{subrouteData}}">
-    </app-route>
+    {{log(page)}}
     <app-scrollpos-control selected="[[page]]"></app-scrollpos-control>
 
     <app-drawer-layout fullbleed>
@@ -117,7 +111,7 @@
           <list-icons   name="icons"   response="[[response]]" search="{{search}}"></list-icons>
           <list-details name="details" response="[[response]]"></list-details>
           <list-options name="options" response="[[response]]"></list-options>
-          <emoji-info   name="info"    response="[[response]]" index="{{subrouteData.id}}"></emoji-info>
+          <emoji-info   name="info"    response="[[response]]" route="[[subRoute]]"></emoji-info>
         </iron-pages>
 
       </app-header-layout>
@@ -162,9 +156,22 @@
       _pageChanged: function(page) {
         // load page import on demand.
         if (page != 'info') {
-          this.importHref(this.resolveUrl('list-' + page + '.html'), null, null, true);
+          this.importHref(this.resolveUrl('list-' + page + '.html'), this._lazyLoad, null, true);
         } else {
-          this.importHref(this.resolveUrl('info.html'), null, null, true);
+          this.importHref(this.resolveUrl('info.html'), this._lazyLoad, null, true);
+        }
+      },
+
+      _lazyLoad: function() {
+        // load lazy resources after render and set `loadComplete` when done.
+        if (!this.loadComplete) {
+          Polymer.RenderStatus.afterNextRender(this, function() {
+            // Register service worker if supported.
+            if ('serviceWorker' in navigator) {
+              navigator.serviceWorker.register(this.baseURL + '/service-worker.js');
+            }
+            this.loadComplete = true;
+          });
         }
       },
 
