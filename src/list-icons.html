@@ -4,13 +4,9 @@
 
     <style>.flexer{display:flex;flex-wrap:wrap;justify-content:space-around;font-size:2em;}.flex{flex:1 0 3em;text-align:center;padding:1em 0;color:initial;text-decoration:initial;}</style>
 
-    <div hidden="{{response}}">
-      Loading...
-    </div>
-
     <div class="flexer">
       <template is="dom-repeat" delay="3000" items="{{response}}" filter="{{_Matches(search)}}" initial-count="1" target-framerate="120">
-        <a href="info/{{item.brow}}" class="flex">{{item.brow}}
+        <a href="#/info/{{item.brow}}" class="flex">{{item.brow}}
       </a></template>
     </div>
 

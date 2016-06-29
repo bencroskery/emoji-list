@@ -6,6 +6,8 @@
 
     <app-route route="{{route}}" pattern="/:id" data="{{sub}}"></app-route>
 
+    <paper-icon-button onclick="window.history.back()" icon="arrow-back" drawer-toggle=""></paper-icon-button>
+
     <div class="info">
       <div style="font-size: 64px">{{getEmoji(response, sub.id)}}</div>
       <div>{{getName(response, sub.id)}}</div>
