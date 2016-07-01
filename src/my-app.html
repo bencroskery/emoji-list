@@ -386,17 +386,15 @@ if(Array.isArray(e)){for(var t=[],n=0;n<e.length;n++)for(var r=e[n].toString().s
 
     <style>:host{display:block;--app-primary-color:#4285f4;--app-secondary-color:black;}app-header{background-color:var(--app-primary-color);color:#fff;}app-header paper-icon-button{--paper-icon-button-ink-color:white;}app-header paper-input{width:100%;--paper-input-container-color:white;--paper-input-container-focus-color:white;--paper-input-container-input-color:white;--paper-input-container-input:{font-size:24px;padding:0;};--paper-input-container-label:{font-size:24px;};}.drawer-list{margin:0 20px;}.drawer-list a{display:block;padding:0 16px;line-height:40px;text-decoration:none;color:var(--app-secondary-color);}.drawer-list a.iron-selected{color:black;font-weight:bold;}.drawer-list a.subroute{padding-left:32px;}.spinner{height:0;text-align:center;}.spinner paper-spinner-lite{margin:20vh;width:20vw;height:20vw;--paper-spinner-stroke-width:1.5vw;}</style>
 
-    <app-location use-hash-as-path="" route="{{route}}"></app-location>
-    <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subRoute}}">
-    </app-route>
-    <app-scrollpos-control selected="[[page]]"></app-scrollpos-control>
+    <app-location route="{{route}}" use-hash-as-path=""></app-location>
+    <app-route route="{{route}}" pattern="/:page" data="{{data}}" tail="{{sub}}"></app-route>
 
     <app-drawer-layout fullbleed="">
 
       
       <app-drawer>
         <app-toolbar>Menu</app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+        <iron-selector selected="[[data.page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="icons" href="#/icons">Icons</a>
           <a name="details" href="#/details">Details</a>
           <a name="options" href="#/options">Options</a>
@@ -418,11 +416,11 @@ if(Array.isArray(e)){for(var t=[],n=0;n<e.length;n++)for(var r=e[n].toString().s
           <paper-spinner-lite alt="Loading" active="{{loading}}"></paper-spinner-lite>
         </div>
 
-        <iron-pages role="main" selected="[[page]]" attr-for-selected="name">
+        <iron-pages role="main" selected="[[data.page]]" attr-for-selected="name">
           <list-icons name="icons" response="[[response]]" search="{{search}}"></list-icons>
           <list-details name="details" response="[[response]]"></list-details>
           <list-options name="options" response="[[response]]"></list-options>
-          <emoji-info name="info" response="[[response]]" route="[[subRoute]]"></emoji-info>
+          <emoji-info name="info" response="[[response]]" route="[[sub]]"></emoji-info>
         </iron-pages>
 
       </app-header-layout>
@@ -431,7 +429,7 @@ if(Array.isArray(e)){for(var t=[],n=0;n<e.length;n++)for(var r=e[n].toString().s
 
   </template>
 
-  <script>function clearInput(e){e.parentNode.value=""}Polymer({is:"my-app",properties:{page:{type:String,reflectToAttribute:!0,observer:"_pageChanged"}},observers:["_routePageChanged(routeData.page)"],_routePageChanged:function(e){this.page=e||"icons"},_pageChanged:function(e){"info"!=e?this.importHref(this.resolveUrl("list-"+e+".html"),this._lazyLoad,null,!0):this.importHref(this.resolveUrl("info.html"),this._lazyLoad,null,!0)},_lazyLoad:function(){this.loadComplete||Polymer.RenderStatus.afterNextRender(this,function(){if("serviceWorker"in navigator){var e=""===window.location.port?"/emoji-list":"";navigator.serviceWorker.register(e+"/service-worker.js")}this.loadComplete=!0})},log:function(e){console.log(e)}});</script>
+  <script>function clearInput(e){e.parentNode.value=""}Polymer({is:"my-app",properties:{route:{type:Object,observer:"_routeChanged"}},observers:["_pageChanged(data.page)"],_routeChanged:function(e){e.path||this.set("route.path","/icons/")},_pageChanged:function(e){"info"!=e?this.importHref(this.resolveUrl("list-"+e+".html"),this._lazyLoad,null,!0):this.importHref(this.resolveUrl("info.html"),this._lazyLoad,null,!0)},_lazyLoad:function(){this.loadComplete||Polymer.RenderStatus.afterNextRender(this,function(){"serviceWorker"in navigator&&navigator.serviceWorker.register("/service-worker.js"),this.loadComplete=!0})},log:function(e){console.log(e)}});</script>
 
 </dom-module>
 </body></html>
