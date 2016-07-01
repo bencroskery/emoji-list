@@ -1,4 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="my-icons.html">
 
 <dom-module id="emoji-info">
 
@@ -15,6 +17,8 @@
     </style>
 
     <app-route route="{{route}}" pattern="/:id" data="{{sub}}"></app-route>
+
+    <paper-icon-button onclick="window.history.back()" icon="arrow-back" drawer-toggle></paper-icon-button>
 
     <div class="info">
       <div style="font-size: 64px">{{getEmoji(response, sub.id)}}</div>

@@ -1,6 +1,6 @@
 {
-  "name": "My App",
-  "short_name": "My App",
+  "name": "Emoji List",
+  "short_name": "Emoji List",
     "icons": [{
       "src": "images/app-icon-32.png",
       "type": "image/png",
@@ -22,8 +22,8 @@
       "sizes": "384x384",
       "type": "image/svg"
     }],
-  "start_url": "/",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#3f51b5",
-  "theme_color": "#3f51b5"
+  "theme_color": "#4285f4"
 }

@@ -20,13 +20,9 @@
       }
     </style>
 
-    <div hidden="{{response}}">
-      Loading...
-    </div>
-
     <div class="flexer">
       <template is="dom-repeat" delay=3000 items="{{response}}" filter="{{_Matches(search)}}" initial-count=1 target-framerate=120>
-        <a href="info/{{item.brow}}" class="flex">{{item.brow}}</div>
+        <a href="#/info/{{item.brow}}" class="flex">{{item.brow}}</div>
       </template>
     </div>
 
