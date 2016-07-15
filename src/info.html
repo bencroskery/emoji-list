@@ -54,8 +54,8 @@
       },
 
       getEmoji: function(response, index) {
-        let i = decodeURIComponent(index);
-        const el = response.findIndex(function(e) {
+        var i = decodeURIComponent(index);
+        var el = response.findIndex(function(e) {
           return e.brow.indexOf(i) !== -1;
         });
 
@@ -63,8 +63,8 @@
       },
 
       getName: function(response, index) {
-        let i = decodeURIComponent(index);
-        const el = response.findIndex(function(e) {
+        var i = decodeURIComponent(index);
+        var el = response.findIndex(function(e) {
           return e.brow.indexOf(i) !== -1;
         });
 
@@ -72,24 +72,20 @@
       },
 
       getImages: function(response, index) {
-        let i = decodeURIComponent(index);
-        const el = response.findIndex(function(e) {
+        var i = decodeURIComponent(index);
+        var el = response.findIndex(function(e) {
           return e.brow.indexOf(i) !== -1;
         });
 
         const props = ['apple', 'goog', 'twtr', 'fbm'];
-        let out = [];
-        let a = this._Prop;
+        var out = [];
+        var a = this._Prop;
         props.forEach(function(p) {
           const o = a(response, el, p);
           if (o)
             out.push(o);
         });
         return out;
-      },
-
-      log: function(a) {
-        console.log(a)
       }
 
     });

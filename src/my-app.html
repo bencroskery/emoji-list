@@ -76,6 +76,7 @@
       .spinner {
         height: 0;
         text-align: center;
+        pointer-events: none;
       }
 
       .spinner paper-spinner-lite {
@@ -92,18 +93,22 @@
 
     <app-drawer-layout fullbleed>
 
+    <app-scrollpos-control selected="[[data.page]]"></app-scrollpos-control>
+
       <!-- Drawer content -->
       <app-drawer>
-        <app-toolbar>Menu</app-toolbar>
-        <iron-selector selected="[[data.page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="icons" href="#/icons">Icons</a>
-          <a name="details" href="#/details">Details</a>
-          <a name="options" href="#/options">Options</a>
+        <app-toolbar>Icons for:</app-toolbar>
+        <iron-selector selected="{{show}}" attr-for-selected="name" class="drawer-list">
+          <a name="brow">Browser</a>
+          <a name="goog">Android</a>
+          <a name="apple">Apple</a>
+          <a name="twtr">Twitter</a>
+          <a name="fbm">Facebook</a>
         </iron-selector>
       </app-drawer>
 
       <!-- Main content -->
-      <app-header-layout has-scrolling-region>
+      <app-header-layout>
         <app-header condenses reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
@@ -118,10 +123,8 @@
         </div>
 
         <iron-pages role="main" selected="[[data.page]]" attr-for-selected="name">
-          <list-icons   name="icons"   response="[[response]]" search="{{search}}"></list-icons>
-          <list-details name="details" response="[[response]]"></list-details>
-          <list-options name="options" response="[[response]]"></list-options>
-          <emoji-info   name="info"    response="[[response]]" route="[[sub]]"></emoji-info>
+          <list-icons name="icons" response="[[response]]" search="{{search}}" show="{{show}}"></list-icons>
+          <emoji-info name="info"  response="[[response]]" route="[[sub]]"></emoji-info>
         </iron-pages>
 
       </app-header-layout>
@@ -141,7 +144,12 @@
         route: {
           type: Object,
           observer: '_routeChanged'
-        }  
+        },
+
+        show: {
+          type: String,
+          value: "brow"
+        }
 
       },
 
