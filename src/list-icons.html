@@ -2,17 +2,24 @@
 
   <template>
 
-    <style>.flexer{display:flex;flex-wrap:wrap;justify-content:space-around;font-size:2em;}.flex{flex:1 0 3em;text-align:center;padding:1em 0;color:initial;text-decoration:initial;}</style>
+    <style>.flexer{display:flex;flex-wrap:wrap;justify-content:space-around;font-size:2em;}.flexer a{flex:1 0 3em;text-align:center;padding:1em 0;color:initial;text-decoration:initial;}.flexer a img{width:1.2em;height:1.2em;}</style>
 
     <div class="flexer">
-      <template is="dom-repeat" delay="3000" items="{{response}}" filter="{{_Matches(search)}}" initial-count="1" target-framerate="120">
-        <a href="#/info/{{item.brow}}" class="flex">{{item.brow}}
-      </a></template>
+      <template is="dom-repeat" items="{{response}}" filter="{{_Matches(search)}}" initial-count="40">
+        <a href="#/info/{{item.brow}}">
+          <template is="dom-if" if="{{isBrow(show)}}">
+            {{item.brow}}
+          </template>
+          <template is="dom-if" if="{{!isBrow(show)}}">
+            <img alt="{{item.brow}}" src="{{getShow(item, show)}}">
+          </template>
+        </a>
+      </template>
     </div>
 
   </template>
 
-  <script>Polymer({is:"list-icons",properties:{response:{value:null,notify:!0},search:{value:"",notify:!0}},_Matches:function(e){return function(n){return e.indexOf(n.brow)!==-1||n.name.toLowerCase().indexOf(e.toLowerCase())!==-1}}});</script>
+  <script>Polymer({is:"list-icons",properties:{response:{value:null,notify:!0},search:{value:"",notify:!0},show:{value:"brow",notify:!0}},_Matches:function(e){return function(o){return e.indexOf(o.brow)!==-1||o.name.toLowerCase().indexOf(e.toLowerCase())!==-1||o.tags.indexOf(e.toLowerCase())!==-1}},isBrow:function(e){return"brow"===e},getShow:function(e,o){return e[o]}});</script>
 
 </dom-module>
 </body></html>

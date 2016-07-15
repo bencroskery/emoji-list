@@ -19,70 +19,7 @@
 
   </template>
 
-  <script>
-
-    Polymer({
-
-      is: 'emoji-info',
-
-      properties: {
-        response: {
-          value: null,
-          notify: true
-        },
-        route: {
-          type: Object,
-          notify: true
-        }
-      },
-
-      _Prop: function(r, i, p) {
-        if (i !== -1)
-          return r[i][p]
-      },
-
-      getEmoji: function(response, index) {
-        let i = decodeURIComponent(index);
-        const el = response.findIndex(function(e) {
-          return e.brow.indexOf(i) !== -1;
-        });
-
-        return this._Prop(response, el, 'brow')
-      },
-
-      getName: function(response, index) {
-        let i = decodeURIComponent(index);
-        const el = response.findIndex(function(e) {
-          return e.brow.indexOf(i) !== -1;
-        });
-
-        return this._Prop(response, el, 'name')
-      },
-
-      getImages: function(response, index) {
-        let i = decodeURIComponent(index);
-        const el = response.findIndex(function(e) {
-          return e.brow.indexOf(i) !== -1;
-        });
-
-        const props = ['apple', 'goog', 'twtr', 'fbm'];
-        let out = [];
-        let a = this._Prop;
-        props.forEach(function(p) {
-          const o = a(response, el, p);
-          if (o)
-            out.push(o);
-        });
-        return out;
-      },
-
-      log: function(a) {
-        console.log(a)
-      }
-
-    });
-
-  </script>
+  <script>Polymer({is:"emoji-info",properties:{response:{value:null,notify:!0},route:{type:Object,notify:!0}},_Prop:function(n,e,o){if(e!==-1)return n[e][o]},getEmoji:function(n,e){var o=decodeURIComponent(e),t=n.findIndex(function(n){return n.brow.indexOf(o)!==-1});return this._Prop(n,t,"brow")},getName:function(n,e){var o=decodeURIComponent(e),t=n.findIndex(function(n){return n.brow.indexOf(o)!==-1});return this._Prop(n,t,"name")},getImages:function(n,e){var o=decodeURIComponent(e),t=n.findIndex(function(n){return n.brow.indexOf(o)!==-1});const r=["apple","goog","twtr","fbm"];var i=[],f=this._Prop;return r.forEach(function(e){const o=f(n,t,e);o&&i.push(o)}),i}});</script>
 
 </dom-module>
 </body></html>
