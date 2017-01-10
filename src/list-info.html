@@ -1,0 +1,33 @@
+<html><head><meta charset="UTF-8"><link rel="import" href="my-app.html"></head><body><dom-module id="list-info">
+
+  <template>
+
+    <style>
+      .info {
+        text-align: center;
+        font-size: calc(2em + 4vw);
+      }
+      .emoji {
+        width: 72px;
+      }
+    </style>
+
+    <app-route route="{{route}}" pattern="/:id" data="{{sub}}"></app-route>
+
+    <paper-icon-button onclick="window.history.back()" icon="arrow-back" drawer-toggle=""></paper-icon-button>
+
+    <div class="info">
+      <div style="font-size: 1.5em">{{getEmoji(response, sub.id)}}</div>
+      <div>{{getName(response, sub.id)}}</div>
+      
+      <template is="dom-repeat" items="{{getImages(response, sub.id)}}">
+        <img class="emoji" src="data:image/png;base64,{{item}}">
+      </template>
+    </div>
+
+  </template>
+
+  <script>Polymer({is:"list-info",properties:{response:{value:null,notify:!0},route:{type:Object,notify:!0}},_Prop:function(n,e,t){if(e!==-1)return n[e][t]},getEmoji:function(n,e){var t=decodeURIComponent(e),o=n.findIndex(function(n){return n[2].indexOf(t)!==-1});return this._Prop(n,o,2)},getName:function(n,e){var t=decodeURIComponent(e),o=n.findIndex(function(n){return n[2].indexOf(t)!==-1});return this._Prop(n,o,0)},getImages:function(n,e){var t=decodeURIComponent(e),o=n.findIndex(function(n){return n[2].indexOf(t)!==-1});const r=[3,4,5,6];var i=[],f=this._Prop;return r.forEach(function(e){const t=f(n,o,e);t&&i.push(t)}),i}});</script>
+
+</dom-module>
+</body></html>

@@ -2,16 +2,34 @@
 
   <template>
 
-    <style>.flexer{display:flex;flex-wrap:wrap;justify-content:space-around;font-size:2em;}.flexer a{flex:1 0 3em;text-align:center;padding:1em 0;color:initial;text-decoration:initial;}.flexer a img{width:1.2em;height:1.2em;}</style>
+    <style>
+      .flexer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        font-size: 36px;
+      }
+      .flexer a {
+        flex: 1 0 2.2em;
+        text-align: center;
+        padding: .5em 0;
+        color: initial;
+        text-decoration: initial;
+      }
+      .flexer a img {
+        width: 1em;
+        height: 1em;
+      }
+    </style>
 
     <div class="flexer">
       <template is="dom-repeat" items="{{response}}" filter="{{_Matches(search)}}" initial-count="40">
-        <a href="#/info/{{item.brow}}">
+        <a href="#/info/{{getIt(item, 2)}}" title="{{getIt(item, 0)}}">
           <template is="dom-if" if="{{isBrow(show)}}">
-            {{item.brow}}
+            {{getIt(item, 2)}}
           </template>
           <template is="dom-if" if="{{!isBrow(show)}}">
-            <img alt="{{item.brow}}" src="{{getShow(item, show)}}">
+            <img alt="{{getIt(item, 2)}}" src="{{getShow(item, show)}}">
           </template>
         </a>
       </template>
@@ -19,7 +37,7 @@
 
   </template>
 
-  <script>Polymer({is:"list-icons",properties:{response:{value:null,notify:!0},search:{value:"",notify:!0},show:{value:"brow",notify:!0}},_Matches:function(e){return function(o){return e.indexOf(o.brow)!==-1||o.name.toLowerCase().indexOf(e.toLowerCase())!==-1||o.tags.indexOf(e.toLowerCase())!==-1}},isBrow:function(e){return"brow"===e},getShow:function(e,o){return e[o]}});</script>
+  <script>Polymer({is:"list-icons",properties:{response:{value:null,notify:!0},search:{type:String,value:"",notify:!0},show:{type:Number,value:2,notify:!0}},_Matches:function(e){return function(n){return e.indexOf(n[2])!==-1||n[0].toLowerCase().indexOf(e.toLowerCase())!==-1||n[1].indexOf(e.toLowerCase())!==-1}},isBrow:function(e){return 2==e},getIt:function(e,n){return e[n]},getShow:function(e,n){return 2==n?"":"data:image/png;base64,"+e[n]}});</script>
 
 </dom-module>
 </body></html>
