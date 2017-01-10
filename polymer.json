@@ -5,5 +5,14 @@
     "src/list-icons.html",
     "src/list-info.html",
     "src/my-icons.html"
+  ],
+  "sources": [
+    "images/**/*",
+    "src/list.json",
+    "manifest.json",
+    "bower.json"
+  ],
+  "includeDependencies": [
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
   ]
 }
