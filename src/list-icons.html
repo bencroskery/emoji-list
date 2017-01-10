@@ -9,29 +9,29 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-        font-size: 2em;
+        font-size: 36px;
       }
       .flexer a {
-        flex: 1 0 3em;
+        flex: 1 0 2.2em;
         text-align: center;
-        padding: 1em 0;
+        padding: .5em 0;
         color: initial;
         text-decoration: initial;
       }
       .flexer a img {
-        width: 1.2em;
-        height: 1.2em;
+        width: 1em;
+        height: 1em;
       }
     </style>
 
     <div class="flexer">
       <template is="dom-repeat" items="{{response}}" filter="{{_Matches(search)}}" initial-count=40>
-        <a href="#/info/{{item.brow}}">
+        <a href="#/info/{{getIt(item, 2)}}" title="{{getIt(item, 0)}}">
           <template is="dom-if" if="{{isBrow(show)}}">
-            {{item.brow}}
+            {{getIt(item, 2)}}
           </template>
           <template is="dom-if" if="{{!isBrow(show)}}">
-            <img alt="{{item.brow}}" src="{{getShow(item, show)}}">
+            <img alt="{{getIt(item, 2)}}" src="{{getShow(item, show)}}">
           </template>
         </a>
       </template>
@@ -51,27 +51,36 @@
           notify: true
         },
         search: {
+          type: String,
           value: '',
           notify: true
         },
         show: {
-          value: 'brow',
+          type: Number,
+          value: 2,
           notify: true
         }
       },
 
       _Matches: function(search) {
         return function(item) {
-          return search.indexOf(item.brow) !== -1 || item.name.toLowerCase().indexOf(search.toLowerCase()) !== -1 || item.tags.indexOf(search.toLowerCase()) !== -1;
+          return search.indexOf(item[2]) !== -1 || item[0].toLowerCase().indexOf(search.toLowerCase()) !== -1 || item[1].indexOf(search.toLowerCase()) !== -1;
         };
       },
 
       isBrow: function(show) {
-        return show === "brow";
+        return show == 2;
+      },
+
+      getIt: function(item, show) {
+        return item[show]
       },
 
       getShow: function(item, show) {
-        return item[show];
+        if (show == 2) {
+          return "";
+        }
+        return "data:image/png;base64," + item[show];
       }
 
     });

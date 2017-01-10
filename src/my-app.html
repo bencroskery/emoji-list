@@ -31,34 +31,32 @@
       :host {
         display: block;
         --app-primary-color: #4285f4;
-        --app-secondary-color: black;
+        --app-secondary-color: #000;
+        --app-navigator-color: #fff;
       }
 
       app-header {
         background-color: var(--app-primary-color);
-        color: #fff;
+        color: var(--app-navigator-color);
       }
       app-header paper-icon-button {
-        --paper-icon-button-ink-color: white;
+        --paper-icon-button-ink-color: var(--app-navigator-color);
       }
       app-header paper-input {
         width: 100%;
-        --paper-input-container-color: white;
-        --paper-input-container-focus-color: white;
-        --paper-input-container-input-color: white;
+        --paper-input-container-color: var(--app-navigator-color);
+        --paper-input-container-focus-color: var(--app-navigator-color);
+        --paper-input-container-input-color: var(--app-navigator-color);
         --paper-input-container-input: {
           font-size: 24px;
-          padding: 0;
         };
         --paper-input-container-label: {
           font-size: 24px;
         }
       }
 
-      .drawer-list {
-        margin: 0 20px;
-      }
       .drawer-list a {
+        cursor: pointer;
         display: block;
         padding: 0 16px;
         line-height: 40px;
@@ -99,11 +97,11 @@
       <app-drawer>
         <app-toolbar>Icons for:</app-toolbar>
         <iron-selector selected="{{show}}" attr-for-selected="name" class="drawer-list">
-          <a name="brow">Browser</a>
-          <a name="goog">Android</a>
-          <a name="apple">Apple</a>
-          <a name="twtr">Twitter</a>
-          <a name="fbm">Facebook</a>
+          <a name="2">Browser</a>
+          <a name="4">Android</a>
+          <a name="3">Apple</a>
+          <a name="5">Twitter</a>
+          <a name="6">Facebook</a>
         </iron-selector>
       </app-drawer>
 
@@ -124,7 +122,7 @@
 
         <iron-pages role="main" selected="[[data.page]]" attr-for-selected="name">
           <list-icons name="icons" response="[[response]]" search="{{search}}" show="{{show}}"></list-icons>
-          <emoji-info name="info"  response="[[response]]" route="[[sub]]"></emoji-info>
+          <list-info name="info"  response="[[response]]" route="[[sub]]"></list-info>
         </iron-pages>
 
       </app-header-layout>
@@ -147,8 +145,8 @@
         },
 
         show: {
-          type: String,
-          value: "brow"
+          type: Number,
+          value: 2
         }
 
       },
@@ -165,11 +163,7 @@
 
       _pageChanged: function(page) {
         // load page import on demand.
-        if (page != 'info') {
-          this.importHref(this.resolveUrl('list-' + page + '.html'), this._lazyLoad, null, true);
-        } else {
-          this.importHref(this.resolveUrl('info.html'), this._lazyLoad, null, true);
-        }
+        this.importHref(this.resolveUrl('list-' + page + '.html'), this._lazyLoad, null, true);
       },
 
       _lazyLoad: function() {

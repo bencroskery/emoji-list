@@ -2,7 +2,7 @@
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="my-icons.html">
 
-<dom-module id="emoji-info">
+<dom-module id="list-info">
 
   <template>
 
@@ -12,7 +12,7 @@
         font-size: calc(2em + 4vw);
       }
       .emoji {
-        width: 64px;
+        width: 72px;
       }
     </style>
 
@@ -21,11 +21,11 @@
     <paper-icon-button onclick="window.history.back()" icon="arrow-back" drawer-toggle></paper-icon-button>
 
     <div class="info">
-      <div style="font-size: 64px">{{getEmoji(response, sub.id)}}</div>
+      <div style="font-size: 1.5em">{{getEmoji(response, sub.id)}}</div>
       <div>{{getName(response, sub.id)}}</div>
       
       <template is="dom-repeat" items="{{getImages(response, sub.id)}}">
-        <img class="emoji" src="{{item}}"/>
+        <img class="emoji" src="data:image/png;base64,{{item}}"/>
       </template>
     </div>
 
@@ -35,7 +35,7 @@
 
     Polymer({
 
-      is: 'emoji-info',
+      is: 'list-info',
 
       properties: {
         response: {
@@ -56,28 +56,28 @@
       getEmoji: function(response, index) {
         var i = decodeURIComponent(index);
         var el = response.findIndex(function(e) {
-          return e.brow.indexOf(i) !== -1;
+          return e[2].indexOf(i) !== -1;
         });
 
-        return this._Prop(response, el, 'brow')
+        return this._Prop(response, el, 2)
       },
 
       getName: function(response, index) {
         var i = decodeURIComponent(index);
         var el = response.findIndex(function(e) {
-          return e.brow.indexOf(i) !== -1;
+          return e[2].indexOf(i) !== -1;
         });
 
-        return this._Prop(response, el, 'name')
+        return this._Prop(response, el, 0)
       },
 
       getImages: function(response, index) {
         var i = decodeURIComponent(index);
         var el = response.findIndex(function(e) {
-          return e.brow.indexOf(i) !== -1;
+          return e[2].indexOf(i) !== -1;
         });
 
-        const props = ['apple', 'goog', 'twtr', 'fbm'];
+        const props = [3, 4, 5, 6];
         var out = [];
         var a = this._Prop;
         props.forEach(function(p) {
