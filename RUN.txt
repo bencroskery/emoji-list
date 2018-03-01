@@ -1,0 +1,1 @@
+polymer build --js-minify --js-compile --css-minify --bundle --add-service-worker --add-push-manifest --insert-prefetch-links
