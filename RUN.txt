@@ -1,1 +1,3 @@
-polymer build --js-minify --js-compile --css-minify --bundle --add-service-worker --add-push-manifest --insert-prefetch-links
+NOTE: Change my-app.html `navigator.serviceWorker.register` to be correct
+
+polymer build --js-minify --js-compile --css-minify --html-minify --bundle --add-service-worker
